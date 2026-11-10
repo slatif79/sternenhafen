@@ -11,6 +11,7 @@ import { BoardView } from './BoardView';
 import {
   DevCardsDialog, DiscardDialog, StealDialog, TradeDialog, TradeRespondDialog, TradeResultDialog,
 } from './Dialogs';
+import { InfoCard } from './InfoCard';
 import { LogDialog, RulesDialog } from './Rules';
 import { LEVEL_LABEL } from './SetupScreen';
 import { RESOURCE_STYLE } from './theme';
@@ -203,6 +204,7 @@ export function GameScreen({ initial, onQuit }: { initial: GameState; onQuit: (f
       </header>
 
       <main className="main">
+        <div className="board-area">
         <BoardView
           board={game.board}
           buildings={game.buildings}
@@ -224,6 +226,8 @@ export function GameScreen({ initial, onQuit }: { initial: GameState; onQuit: (f
             <strong>{game.dice[0] + game.dice[1]}</strong>
           </div>
         )}
+        </div>
+        <InfoCard resources={viewerRes} />
       </main>
 
       {/* Aktionsleiste */}

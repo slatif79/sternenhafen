@@ -431,3 +431,65 @@ button:disabled:active { transform: none; }
 .log-list { display: flex; flex-direction: column; gap: 2px; font-size: 0.85rem; margin-top: 10px; }
 .log-entry { border-left: 3px solid; padding: 3px 8px; }
 .link-btn { margin-top: 8px; background: transparent; border-color: transparent; color: var(--muted); }
+
+/* ---------- Übersichtskarte (Rohstoffe & Baukosten) ---------- */
+.main { display: flex; }
+.board-area { position: relative; flex: 1; min-width: 0; height: 100%; }
+
+.info-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  max-width: calc(100% - 20px);
+}
+.info-toggle { min-height: 40px; padding: 6px 12px; font-size: 0.85rem; background: #151c33e8; }
+.info-body { display: none; }
+.info-card.open .info-body {
+  display: block;
+  margin-top: 6px;
+  width: 250px;
+  max-height: calc(100dvh - 330px);
+  overflow-y: auto;
+  background: #151c33f2;
+  border: 1px solid #34407a;
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 30px #0008;
+}
+.info-card.open { display: flex; flex-direction: column; align-items: flex-end; }
+
+.info-body h3 { margin: 4px 0 6px; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+.info-body h3 + ul { margin-bottom: 10px; }
+.info-res, .info-costs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.info-res li { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+.info-swatch { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; flex: none; font-size: 0.9rem; }
+.info-costs li { background: #0f1530; border-radius: 10px; padding: 6px 8px; border: 1px solid transparent; }
+.info-costs li.affordable { border-color: #6be38a66; }
+.info-cost-head { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; margin-bottom: 4px; }
+.info-cost-items { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* Breite Bildschirme: Karte dauerhaft neben dem Spielfeld */
+@media (min-width: 900px) {
+  .info-card {
+    position: static;
+    max-width: none;
+    width: 260px;
+    flex: none;
+    padding: 10px 10px 10px 0;
+    overflow-y: auto;
+  }
+  .info-toggle { display: none; }
+  .info-card .info-body,
+  .info-card.open .info-body {
+    display: block;
+    width: auto;
+    max-height: none;
+    margin: 0;
+    background: var(--panel);
+    border: 1px solid #232d52;
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: none;
+  }
+}
